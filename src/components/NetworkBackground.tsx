@@ -185,29 +185,29 @@ const NetworkBackground = () => {
           if (distance < 250) {
             if (!ctx) return;
             
-            // Use opacity based on distance
-            const opacity = 0.15 * (1 - distance / 250);
+            // Use opacity based on distance but with higher base value
+            const opacity = 0.3 * (1 - distance / 250);
             
             // Draw data flowing along connections with animated dots
             const time = Date.now() / 1000;
             const speed = 2; // Speed of flow
             const flowPosition = (time * speed) % 1; // Normalized position 0-1
             
-            // Main connection line
+            // Main connection line - increased lineWidth from 0.5 to 1.5
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(connectedNode.x, connectedNode.y);
-            ctx.strokeStyle = `rgba(120, 220, 120, ${opacity * 0.7})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(120, 220, 120, ${opacity * 0.9})`;
+            ctx.lineWidth = 1.5;
             ctx.stroke();
             
-            // Animated data point flowing on the line
+            // Animated data point flowing on the line - increased size from 1 to 2
             const flowX = node.x + (connectedNode.x - node.x) * flowPosition;
             const flowY = node.y + (connectedNode.y - node.y) * flowPosition;
             
             ctx.beginPath();
-            ctx.arc(flowX, flowY, 1, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(120, 255, 120, ${opacity * 2})`;
+            ctx.arc(flowX, flowY, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(120, 255, 120, ${opacity * 2.5})`;
             ctx.fill();
           }
         });

@@ -8,6 +8,7 @@ import ServicesSection from '@/components/ServicesSection';
 import CTASection from '@/components/CTASection';
 import NetworkBackground from '@/components/NetworkBackground';
 import GeometricShapes from '@/components/GeometricShapes';
+import BenefitsSection from '@/components/BenefitsSection';
 
 const Index = () => {
   const mainRef = useRef<HTMLElement>(null);
@@ -45,6 +46,9 @@ const Index = () => {
       
       <main ref={mainRef}>
         <HeroSection />
+        <section className="opacity-0 translate-y-8 transition-all duration-700 ease-out">
+          <BenefitsSection />
+        </section>
         <section className="opacity-0 translate-y-8 transition-all duration-700 ease-out">
           <AboutSection />
         </section>
