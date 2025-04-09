@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { Leaf, Cpu, Database, Globe, Code } from 'lucide-react';
 
 const NetworkBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -123,11 +124,37 @@ const NetworkBackground = () => {
     };
   }, []);
 
+  // New floating icons component
+  const FloatingIcons = () => {
+    return (
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[15%] left-[10%] text-cenner/20 animate-float opacity-50">
+          <Leaf size={28} />
+        </div>
+        <div className="absolute top-[35%] right-[15%] text-cenner/15 animate-float opacity-50" style={{ animationDelay: '1s' }}>
+          <Cpu size={32} />
+        </div>
+        <div className="absolute bottom-[25%] left-[20%] text-cenner/15 animate-float opacity-50" style={{ animationDelay: '2s' }}>
+          <Database size={26} />
+        </div>
+        <div className="absolute top-[70%] right-[25%] text-cenner/15 animate-float opacity-50" style={{ animationDelay: '3s' }}>
+          <Globe size={30} />
+        </div>
+        <div className="absolute top-[50%] left-[40%] text-cenner/15 animate-float opacity-50" style={{ animationDelay: '2.5s' }}>
+          <Code size={28} />
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-60 z-0"
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-60 z-0"
+      />
+      <FloatingIcons />
+    </>
   );
 };
 

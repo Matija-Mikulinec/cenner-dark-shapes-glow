@@ -23,6 +23,30 @@ const GeometricShapes = () => {
           clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
         }}
       />
+      
+      {/* New triangle shape */}
+      <div 
+        className="absolute top-1/3 right-10 w-40 h-40 bg-purple-500/5 animate-float blur-lg"
+        style={{ 
+          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
+        }}
+      />
+      
+      {/* New diamond shape */}
+      <div 
+        className="absolute bottom-1/4 left-1/4 w-36 h-36 bg-blue-400/5 animate-pulse-slow blur-xl"
+        style={{ 
+          clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
+        }}
+      />
+      
+      {/* New shape - pentagon */}
+      <div 
+        className="absolute top-20 left-1/2 w-48 h-48 bg-cenner/5 animate-rotate-slow blur-2xl"
+        style={{ 
+          clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
+        }}
+      />
     </div>
   );
 };
