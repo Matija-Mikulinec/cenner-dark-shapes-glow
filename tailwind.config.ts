@@ -84,6 +84,14 @@ export default {
 				'rotate-slow': {
 					from: { transform: 'rotate(0deg)' },
 					to: { transform: 'rotate(360deg)' }
+				},
+				'flow': {
+					'0%': { strokeDashoffset: '0' },
+					'100%': { strokeDashoffset: '1000' }
+				},
+				'glow': {
+					'0%, 100%': { opacity: '0.6', boxShadow: '0 0 5px rgba(76, 175, 80, 0.3)' },
+					'50%': { opacity: '1', boxShadow: '0 0 20px rgba(76, 175, 80, 0.6)' }
 				}
 			},
 			animation: {
@@ -91,7 +99,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 6s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
-				'rotate-slow': 'rotate-slow 30s linear infinite'
+				'rotate-slow': 'rotate-slow 30s linear infinite',
+				'flow': 'flow 30s linear infinite',
+				'glow': 'glow 3s ease-in-out infinite'
 			}
 		}
 	},
