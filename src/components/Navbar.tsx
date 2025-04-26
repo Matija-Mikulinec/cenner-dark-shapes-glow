@@ -73,11 +73,11 @@ const NavLinks = () => {
       <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
         O nama
       </Link>
-      <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-        Kontakt
-      </Link>
       <Link to="/offer" className="text-gray-300 hover:text-white transition-colors">
         Ponuda
+      </Link>
+      <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+        Kontakt
       </Link>
     </>
   );
@@ -92,11 +92,11 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
       <Link to="/about" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
         O nama
       </Link>
-      <Link to="/contact" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
-        Kontakt
-      </Link>
       <Link to="/offer" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
         Ponuda
+      </Link>
+      <Link to="/contact" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
+        Kontakt
       </Link>
     </>
   );

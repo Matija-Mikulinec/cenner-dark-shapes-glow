@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Leaf, Cpu, Database, Globe, Code, Zap } from 'lucide-react';
 
@@ -25,7 +24,6 @@ const NetworkBackground = () => {
     window.addEventListener('resize', setCanvasSize);
     setCanvasSize();
 
-    // Node class for neural network effect
     class Node {
       x: number;
       y: number;
@@ -41,36 +39,33 @@ const NetworkBackground = () => {
       constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.radius = Math.random() * 1.5 + 0.5;
-        this.maxRadius = this.radius * 1.5;
+        this.radius = Math.random() * 1.5 + 1.5;
+        this.maxRadius = this.radius * 1.6;
         this.color = '#4CAF50';
         this.velocity = {
-          x: (Math.random() - 0.5) * 0.5,
-          y: (Math.random() - 0.5) * 0.5
+          x: (Math.random() - 0.5) * 0.23,
+          y: (Math.random() - 0.5) * 0.23
         };
-        this.opacity = Math.random() * 0.5 + 0.3;
-        this.pulseSpeed = Math.random() * 0.01 + 0.005;
+        this.opacity = Math.random() * 0.5 + 0.35;
+        this.pulseSpeed = Math.random() * 0.009 + 0.003;
         this.pulseSize = 0;
         this.connections = [];
       }
 
       draw() {
         if (!ctx) return;
-        
-        // Draw main dot
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius + this.pulseSize, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(76, 175, 80, ${this.opacity})`;
         ctx.fill();
-        
-        // Draw subtle glow
+
+        // Glow
         const gradient = ctx.createRadialGradient(
           this.x, this.y, this.radius,
           this.x, this.y, this.radius * 4
         );
         gradient.addColorStop(0, `rgba(76, 175, 80, ${this.opacity * 0.3})`);
         gradient.addColorStop(1, 'rgba(76, 175, 80, 0)');
-        
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius * 4, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
@@ -78,30 +73,27 @@ const NetworkBackground = () => {
       }
 
       pulse() {
-        // Create a subtle pulsing effect
         this.pulseSize = Math.sin(Date.now() * this.pulseSpeed) * (this.maxRadius - this.radius);
       }
 
       update() {
         this.pulse();
-        
         this.x += this.velocity.x;
         this.y += this.velocity.y;
 
-        // Bounce off walls with slight random direction change
+        // Bounce + randomness (even slower and smoother)
         if (this.x + this.radius > width || this.x - this.radius < 0) {
-          this.velocity.x = -this.velocity.x * 0.95;
-          this.velocity.y += (Math.random() - 0.5) * 0.2;
+          this.velocity.x = -this.velocity.x * 0.8;
+          this.velocity.y += (Math.random() - 0.5) * 0.08;
         }
-
         if (this.y + this.radius > height || this.y - this.radius < 0) {
-          this.velocity.y = -this.velocity.y * 0.95;
-          this.velocity.x += (Math.random() - 0.5) * 0.2;
+          this.velocity.y = -this.velocity.y * 0.8;
+          this.velocity.x += (Math.random() - 0.5) * 0.08;
         }
 
-        // Maintain reasonable velocity
+        // Clamp velocity for smoothness
         const speed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
-        const maxSpeed = 0.8;
+        const maxSpeed = 0.32;
         if (speed > maxSpeed) {
           this.velocity.x = (this.velocity.x / speed) * maxSpeed;
           this.velocity.y = (this.velocity.y / speed) * maxSpeed;
@@ -111,8 +103,8 @@ const NetworkBackground = () => {
       }
     }
 
-    // Create nodes
-    const numNodes = Math.min(width, height) * 0.07;
+    // More nodes for denser network, still performant
+    const numNodes = Math.min(width, height) * 0.09;
     const nodes: Node[] = [];
 
     for (let i = 0; i < numNodes; i++) {
@@ -121,9 +113,7 @@ const NetworkBackground = () => {
       nodes.push(new Node(x, y));
     }
 
-    // Create neural-like connections between nodes
     function generateConnections() {
-      // Each node tries to connect to closest nodes
       nodes.forEach((node, index) => {
         const possibleConnections = nodes
           .map((otherNode, otherIndex) => {
@@ -133,29 +123,21 @@ const NetworkBackground = () => {
             const distance = Math.sqrt(dx * dx + dy * dy);
             return { index: otherIndex, distance };
           })
-          .filter(conn => conn.distance < 250)
+          .filter(conn => conn.distance < 240)
           .sort((a, b) => a.distance - b.distance);
-
-        // Connect to some of the closest nodes (not all, to avoid too many lines)
-        const connections = possibleConnections
-          .slice(0, Math.floor(Math.random() * 3) + 1)
+        node.connections = possibleConnections
+          .slice(0, Math.floor(Math.random() * 3) + 2)
           .map(conn => conn.index);
-          
-        node.connections = connections;
       });
     }
-
     generateConnections();
 
-    // Every 5 seconds, partially regenerate connections for dynamic network
-    setInterval(() => {
-      // Only regenerate connections for 30% of nodes to maintain some visual consistency
-      const nodesToUpdate = Math.floor(nodes.length * 0.3);
+    const connUpdateInterval = setInterval(() => {
+      // Partial connection refresh
+      const nodesToUpdate = Math.floor(nodes.length * 0.25);
       for (let i = 0; i < nodesToUpdate; i++) {
         const randomNodeIndex = Math.floor(Math.random() * nodes.length);
         const randomNode = nodes[randomNodeIndex];
-        
-        // Find new connections
         const possibleConnections = nodes
           .map((otherNode, otherIndex) => {
             if (randomNodeIndex === otherIndex) return { index: otherIndex, distance: Infinity };
@@ -164,14 +146,13 @@ const NetworkBackground = () => {
             const distance = Math.sqrt(dx * dx + dy * dy);
             return { index: otherIndex, distance };
           })
-          .filter(conn => conn.distance < 250)
+          .filter(conn => conn.distance < 240)
           .sort((a, b) => a.distance - b.distance);
-
         randomNode.connections = possibleConnections
           .slice(0, Math.floor(Math.random() * 3) + 2)
           .map(conn => conn.index);
       }
-    }, 5000);
+    }, 6000);
 
     function drawConnections() {
       nodes.forEach((node, index) => {
@@ -180,34 +161,31 @@ const NetworkBackground = () => {
           const dx = node.x - connectedNode.x;
           const dy = node.y - connectedNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          // Only draw connections within range
-          if (distance < 250) {
+
+          if (distance < 240) {
             if (!ctx) return;
-            
-            // Use opacity based on distance but with higher base value
-            const opacity = 0.3 * (1 - distance / 250);
-            
-            // Draw data flowing along connections with animated dots
-            const time = Date.now() / 1000;
-            const speed = 2; // Speed of flow
-            const flowPosition = (time * speed) % 1; // Normalized position 0-1
-            
-            // Main connection line - increased lineWidth from 0.5 to 1.5
+            // Thicker, more visible: lineWidth ~2.6, stronger color
+            const opacity = 0.38 * (1 - distance / 240);
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(connectedNode.x, connectedNode.y);
-            ctx.strokeStyle = `rgba(120, 220, 120, ${opacity * 0.9})`;
-            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = `rgba(120, 220, 120, ${opacity * 1.2})`;
+            ctx.lineWidth = 2.6;
+            ctx.shadowBlur = 2;
+            ctx.shadowColor = 'rgba(76, 175, 80, 0.3)';
             ctx.stroke();
-            
-            // Animated data point flowing on the line - increased size from 1 to 2
+            ctx.shadowBlur = 0;
+
+            // Animated signal (smoother)
+            const time = Date.now() / 1400;
+            const speed = 1.05;
+            const flowPosition = (time * speed) % 1;
             const flowX = node.x + (connectedNode.x - node.x) * flowPosition;
             const flowY = node.y + (connectedNode.y - node.y) * flowPosition;
-            
+
             ctx.beginPath();
-            ctx.arc(flowX, flowY, 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(120, 255, 120, ${opacity * 2.5})`;
+            ctx.arc(flowX, flowY, 2.6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(120, 255, 120, ${opacity * 2.2})`;
             ctx.fill();
           }
         });
@@ -215,15 +193,12 @@ const NetworkBackground = () => {
     }
 
     let animationId: number;
-
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
-
       nodes.forEach(node => {
         node.update();
       });
-
       drawConnections();
       animationId = requestAnimationFrame(animate);
     };
@@ -232,11 +207,11 @@ const NetworkBackground = () => {
 
     return () => {
       cancelAnimationFrame(animationId);
+      clearInterval(connUpdateInterval);
       window.removeEventListener('resize', setCanvasSize);
     };
   }, []);
 
-  // Enhanced floating icons with neural network theme
   const FloatingIcons = () => {
     return (
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
