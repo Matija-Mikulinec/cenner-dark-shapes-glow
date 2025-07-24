@@ -53,10 +53,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				cenner: {
-					DEFAULT: '#4CAF50',
-					dark: '#3b9c3b',
-					light: '#81c784'
+				silver: {
+					DEFAULT: 'hsl(var(--silver))',
+					dark: 'hsl(var(--silver-dark))'
+				},
+				glass: {
+					bg: 'hsl(var(--glass-bg))',
+					border: 'hsl(var(--glass-border))'
 				}
 			},
 			borderRadius: {
@@ -90,8 +93,13 @@ export default {
 					'100%': { strokeDashoffset: '1000' }
 				},
 				'glow': {
-					'0%, 100%': { opacity: '0.6', boxShadow: '0 0 5px rgba(76, 175, 80, 0.3)' },
-					'50%': { opacity: '1', boxShadow: '0 0 20px rgba(76, 175, 80, 0.6)' }
+					'0%, 100%': { opacity: '0.6', boxShadow: '0 0 5px hsl(280 100% 70% / 0.3)' },
+					'50%': { opacity: '1', boxShadow: '0 0 20px hsl(280 100% 70% / 0.6)' }
+				},
+				'liquid': {
+					'0%': { 'border-radius': '60% 40% 30% 70% / 60% 30% 70% 40%' },
+					'50%': { 'border-radius': '30% 60% 70% 40% / 50% 60% 30% 60%' },
+					'100%': { 'border-radius': '60% 40% 30% 70% / 60% 30% 70% 40%' }
 				}
 			},
 			animation: {
@@ -101,7 +109,8 @@ export default {
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
 				'rotate-slow': 'rotate-slow 30s linear infinite',
 				'flow': 'flow 30s linear infinite',
-				'glow': 'glow 3s ease-in-out infinite'
+				'glow': 'glow 3s ease-in-out infinite',
+				'liquid': 'liquid 8s ease-in-out infinite'
 			}
 		}
 	},

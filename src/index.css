@@ -5,26 +5,34 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 120 39% 49%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142 71% 45%;
-    --radius: 0.5rem;
+    --background: 240 8% 8%;
+    --foreground: 240 20% 95%;
+    --card: 240 10% 12%;
+    --card-foreground: 240 20% 95%;
+    --popover: 240 10% 12%;
+    --popover-foreground: 240 20% 95%;
+    --primary: 280 100% 70%;
+    --primary-foreground: 240 20% 95%;
+    --secondary: 240 15% 20%;
+    --secondary-foreground: 240 20% 95%;
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 15% 65%;
+    --accent: 300 100% 75%;
+    --accent-foreground: 240 20% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 20% 95%;
+    --border: 240 15% 20%;
+    --input: 240 15% 18%;
+    --ring: 280 100% 70%;
+    --radius: 1rem;
+    --glass-bg: 240 15% 20%;
+    --glass-border: 240 30% 40%;
+    --silver: 220 20% 85%;
+    --silver-dark: 220 15% 70%;
+    --purple-light: 280 100% 85%;
+    --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%), hsl(300 100% 75%));
+    --gradient-silver: linear-gradient(135deg, hsl(220 20% 85%), hsl(240 30% 75%));
+    --gradient-glass: linear-gradient(135deg, hsla(240 15% 20% / 0.8), hsla(280 100% 70% / 0.2));
   }
 
   * {
@@ -51,10 +59,29 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-lg;
+    background: var(--gradient-glass);
+    @apply backdrop-blur-xl border border-white/20 shadow-2xl;
   }
   
-  .cenner-gradient {
-    @apply bg-gradient-to-r from-cenner to-cenner-dark;
+  .glass-button {
+    background: var(--gradient-glass);
+    @apply backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .glass-nav {
+    background: linear-gradient(135deg, hsla(240 15% 20% / 0.9), hsla(280 100% 70% / 0.1));
+    @apply backdrop-blur-2xl border-b border-white/20;
+  }
+  
+  .liquid-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .silver-gradient {
+    background: var(--gradient-silver);
+  }
+  
+  .glow-effect {
+    @apply shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-shadow duration-300;
   }
 }

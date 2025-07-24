@@ -56,8 +56,8 @@ const NetworkBackground = () => {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = 'rgba(255, 0, 0, 0.75)';
-            ctx.lineWidth = 0.25;
+            ctx.strokeStyle = 'rgba(255, 0, 0, 0.85)';
+            ctx.lineWidth = 0.4;
             ctx.stroke();
           }
         }
@@ -66,8 +66,8 @@ const NetworkBackground = () => {
 
     const updateNodes = () => {
       for (const node of nodesRef.current) {
-        node.x += node.vx;
-        node.y += node.vy;
+        node.x += node.vx * 1.5; // Make faster
+        node.y += node.vy * 1.5;
 
         if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;

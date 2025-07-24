@@ -9,6 +9,7 @@ import CTASection from '@/components/CTASection';
 import NetworkBackground from '@/components/NetworkBackground';
 import GeometricShapes from '@/components/GeometricShapes';
 import BenefitsSection from '@/components/BenefitsSection';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 const Index = () => {
   const mainRef = useRef<HTMLElement>(null);
@@ -39,10 +40,11 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      <Navbar />
-      <NetworkBackground />
-      <GeometricShapes />
+    <LanguageProvider>
+      <div className="min-h-screen bg-background overflow-x-hidden">
+        <Navbar />
+        <NetworkBackground />
+        <GeometricShapes />
       
       <main ref={mainRef}>
         <HeroSection />
@@ -60,8 +62,9 @@ const Index = () => {
         </section>
       </main>
       
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 

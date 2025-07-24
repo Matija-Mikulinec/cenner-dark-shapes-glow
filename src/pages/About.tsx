@@ -3,12 +3,16 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import GeometricShapes from '@/components/GeometricShapes';
+import NetworkBackground from '@/components/NetworkBackground';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <GeometricShapes />
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <NetworkBackground />
+        <GeometricShapes />
       
       <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
@@ -54,8 +58,9 @@ const About = () => {
         </div>
       </main>
       
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 

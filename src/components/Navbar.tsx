@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
+import LanguageSwitch from './LanguageSwitch';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-nav">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Logo />
@@ -22,11 +25,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLinks />
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" asChild>
-                <Link to="/login">Prijava</Link>
+              <LanguageSwitch />
+              <Button variant="glass" asChild>
+                <Link to="/login">{t('login')}</Link>
               </Button>
-              <Button className="bg-cenner hover:bg-cenner-dark text-white" asChild>
-                <Link to="/register">Registracija</Link>
+              <Button variant="liquid" asChild>
+                <Link to="/register">{t('register')}</Link>
               </Button>
             </div>
           </div>
@@ -51,11 +55,12 @@ const Navbar = () => {
             <MobileNavLinks closeMenu={() => setIsMenuOpen(false)} />
           </div>
           <div className="flex flex-col space-y-4 pt-4">
-            <Button variant="outline" asChild>
-              <Link to="/login" onClick={() => setIsMenuOpen(false)}>Prijava</Link>
+            <LanguageSwitch />
+            <Button variant="glass" asChild>
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>{t('login')}</Link>
             </Button>
-            <Button className="bg-cenner hover:bg-cenner-dark text-white" asChild>
-              <Link to="/register" onClick={() => setIsMenuOpen(false)}>Registracija</Link>
+            <Button variant="liquid" asChild>
+              <Link to="/register" onClick={() => setIsMenuOpen(false)}>{t('register')}</Link>
             </Button>
           </div>
         </div>
@@ -65,38 +70,40 @@ const Navbar = () => {
 };
 
 const NavLinks = () => {
+  const { t } = useLanguage();
   return (
     <>
-      <Link to="/" className="text-gray-300 hover:text-white transition-colors">
-        Početna
+      <Link to="/" className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105">
+        {t('home')}
       </Link>
-      <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
-        O nama
+      <Link to="/about" className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105">
+        {t('about')}
       </Link>
-      <Link to="/offer" className="text-gray-300 hover:text-white transition-colors">
-        Ponuda
+      <Link to="/offer" className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105">
+        {t('offer')}
       </Link>
-      <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-        Kontakt
+      <Link to="/contact" className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105">
+        {t('contact')}
       </Link>
     </>
   );
 };
 
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
+  const { t } = useLanguage();
   return (
     <>
-      <Link to="/" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
-        Početna
+      <Link to="/" className="text-xl text-gray-300 hover:text-white transition-all duration-300" onClick={closeMenu}>
+        {t('home')}
       </Link>
-      <Link to="/about" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
-        O nama
+      <Link to="/about" className="text-xl text-gray-300 hover:text-white transition-all duration-300" onClick={closeMenu}>
+        {t('about')}
       </Link>
-      <Link to="/offer" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
-        Ponuda
+      <Link to="/offer" className="text-xl text-gray-300 hover:text-white transition-all duration-300" onClick={closeMenu}>
+        {t('offer')}
       </Link>
-      <Link to="/contact" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={closeMenu}>
-        Kontakt
+      <Link to="/contact" className="text-xl text-gray-300 hover:text-white transition-all duration-300" onClick={closeMenu}>
+        {t('contact')}
       </Link>
     </>
   );
