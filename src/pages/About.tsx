@@ -8,11 +8,10 @@ import { LanguageProvider } from '@/context/LanguageContext';
 
 const About = () => {
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <NetworkBackground />
-        <GeometricShapes />
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <NetworkBackground />
+      <GeometricShapes />
       
       <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
@@ -58,9 +57,8 @@ const About = () => {
         </div>
       </main>
       
-        <Footer />
-      </div>
-    </LanguageProvider>
+      <Footer />
+    </div>
   );
 };
 

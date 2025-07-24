@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-import { useLanguage, LanguageProvider } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import NetworkBackground from '@/components/NetworkBackground';
 
 const Login = () => {
@@ -23,10 +23,9 @@ const Login = () => {
   };
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen flex items-center justify-center bg-background relative">
-        <NetworkBackground />
-        <div className="w-full max-w-md glass-card p-8 rounded-xl shadow-2xl z-10">
+    <div className="min-h-screen flex items-center justify-center bg-background relative">
+      <NetworkBackground />
+      <div className="w-full max-w-md glass-card p-8 rounded-xl shadow-2xl z-10">
         <h1 className="text-3xl font-bold mb-6 text-center">{t('loginTitle')}</h1>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
@@ -60,9 +59,8 @@ const Login = () => {
         <p className="mt-6 text-sm text-muted-foreground text-center">
           {t('dontHaveAccount')} <Link to="/register" className="text-primary hover:underline">{t('signUp')}</Link>
         </p>
-        </div>
       </div>
-    </LanguageProvider>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { useLanguage, LanguageProvider } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,11 +36,10 @@ const Contact = () => {
   };
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <NetworkBackground />
-        <GeometricShapes />
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <NetworkBackground />
+      <GeometricShapes />
       
       <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
@@ -160,9 +159,8 @@ const Contact = () => {
         </div>
       </main>
       
-        <Footer />
-      </div>
-    </LanguageProvider>
+      <Footer />
+    </div>
   );
 };
 

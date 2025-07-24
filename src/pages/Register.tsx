@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-import { useLanguage, LanguageProvider } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import NetworkBackground from '@/components/NetworkBackground';
 
 const Register = () => {
@@ -27,10 +27,9 @@ const Register = () => {
   };
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen flex items-center justify-center bg-background relative py-8">
-        <NetworkBackground />
-        <div className="w-full max-w-lg glass-card p-8 rounded-xl shadow-2xl z-10 mx-4">
+    <div className="min-h-screen flex items-center justify-center bg-background relative py-8">
+      <NetworkBackground />
+      <div className="w-full max-w-lg glass-card p-8 rounded-xl shadow-2xl z-10 mx-4">
         <h1 className="text-3xl font-bold mb-6 text-center">{t('registerTitle')}</h1>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -114,9 +113,8 @@ const Register = () => {
         <p className="mt-6 text-sm text-muted-foreground text-center">
           {t('alreadyHaveAccount')} <Link to="/login" className="text-primary hover:underline">{t('signIn')}</Link>
         </p>
-        </div>
       </div>
-    </LanguageProvider>
+    </div>
   );
 };
 
