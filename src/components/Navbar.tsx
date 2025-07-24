@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 import LanguageSwitch from './LanguageSwitch';
+import ThemeToggle from './ThemeToggle';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
@@ -25,11 +26,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <NavLinks />
             <div className="flex items-center space-x-3">
+              <ThemeToggle />
               <LanguageSwitch />
-              <Button variant="glass" asChild>
+              <Button variant="glass" size="sm" asChild>
                 <Link to="/login">{t('login')}</Link>
               </Button>
-              <Button variant="liquid" asChild>
+              <Button variant="liquid" size="sm" asChild>
                 <Link to="/register">{t('register')}</Link>
               </Button>
             </div>
@@ -55,11 +57,12 @@ const Navbar = () => {
             <MobileNavLinks closeMenu={() => setIsMenuOpen(false)} />
           </div>
           <div className="flex flex-col space-y-4 pt-4">
+            <ThemeToggle />
             <LanguageSwitch />
-            <Button variant="glass" asChild>
+            <Button variant="glass" size="sm" asChild>
               <Link to="/login" onClick={() => setIsMenuOpen(false)}>{t('login')}</Link>
             </Button>
-            <Button variant="liquid" asChild>
+            <Button variant="liquid" size="sm" asChild>
               <Link to="/register" onClick={() => setIsMenuOpen(false)}>{t('register')}</Link>
             </Button>
           </div>

@@ -33,12 +33,26 @@ const translations = {
     getStarted: 'Počnite sada',
     learnMore: 'Saznajte više',
     
+    // About
+    aboutTitle: 'O nama',
+    aboutSubtitle: 'Saznajte više o našoj kompaniji i misiji',
+    
+    // Services
+    servicesTitle: 'Naše usluge',
+    servicesSubtitle: 'Pružamo širok spektar digitalnih rješenja',
+    
+    // Benefits
+    benefitsTitle: 'Zašto odabrati nas',
+    benefitsSubtitle: 'Prednosti rada s našim timom',
+    
     // Contact
     contactTitle: 'Kontakt',
     contactInfo: 'Kontakt informacije',
     sendMessage: 'Pošaljite poruku',
     subject: 'Predmet',
     message: 'Poruka',
+    addressLabel: 'Adresa',
+    workingHours: 'Radno vrijeme',
     
     // Forms
     loginTitle: 'Prijava',
@@ -47,6 +61,14 @@ const translations = {
     dontHaveAccount: 'Nemate račun?',
     signIn: 'Prijavite se',
     signUp: 'Registrirajte se',
+    
+    // Footer
+    allRightsReserved: 'Sva prava zadržana',
+    
+    // CTA
+    ctaTitle: 'Spremni za početak?',
+    ctaSubtitle: 'Kontaktirajte nas danas i pokrenimo vaš projekt',
+    contactUs: 'Kontaktirajte nas',
   },
   en: {
     // Navigation
@@ -72,12 +94,26 @@ const translations = {
     getStarted: 'Get Started',
     learnMore: 'Learn More',
     
+    // About
+    aboutTitle: 'About Us',
+    aboutSubtitle: 'Learn more about our company and mission',
+    
+    // Services
+    servicesTitle: 'Our Services',
+    servicesSubtitle: 'We provide a wide range of digital solutions',
+    
+    // Benefits
+    benefitsTitle: 'Why Choose Us',
+    benefitsSubtitle: 'Benefits of working with our team',
+    
     // Contact
     contactTitle: 'Contact',
     contactInfo: 'Contact Information',
     sendMessage: 'Send Message',
     subject: 'Subject',
     message: 'Message',
+    addressLabel: 'Address',
+    workingHours: 'Working Hours',
     
     // Forms
     loginTitle: 'Login',
@@ -86,6 +122,14 @@ const translations = {
     dontHaveAccount: "Don't have an account?",
     signIn: 'Sign In',
     signUp: 'Sign Up',
+    
+    // Footer
+    allRightsReserved: 'All rights reserved',
+    
+    // CTA
+    ctaTitle: 'Ready to Get Started?',
+    ctaSubtitle: 'Contact us today and let\'s launch your project',
+    contactUs: 'Contact Us',
   }
 };
 

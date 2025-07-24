@@ -22,9 +22,9 @@ const buttonVariants = cva(
         liquid: "liquid-gradient text-primary-foreground hover:scale-105 animate-liquid glow-effect",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        default: "h-11 px-8 py-2 min-w-[120px]",
+        sm: "h-9 px-6 min-w-[100px]",
+        lg: "h-12 px-10 min-w-[140px]",
         icon: "h-10 w-10",
       },
     },
