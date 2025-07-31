@@ -26,13 +26,13 @@ const LiquidBlobsBackground = () => {
     };
 
     const initBlobs = () => {
-      blobsRef.current = Array.from({ length: 6 }, () => ({
+      blobsRef.current = Array.from({ length: 8 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 300 + 150,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.3 + 0.1,
+        size: Math.random() * 250 + 200,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.4 + 0.2,
       }));
     };
 
@@ -45,12 +45,13 @@ const LiquidBlobsBackground = () => {
           blob.x, blob.y, blob.size
         );
         
-        gradient.addColorStop(0, `hsla(220, 30%, 85%, ${blob.opacity})`);
-        gradient.addColorStop(0.5, `hsla(220, 40%, 92%, ${blob.opacity * 0.7})`);
-        gradient.addColorStop(1, `hsla(220, 20%, 70%, 0)`);
+        // More subtle and glass-like colors
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${blob.opacity * 0.15})`);
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${blob.opacity * 0.08})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
         
         ctx.fillStyle = gradient;
-        ctx.filter = 'blur(40px)';
+        ctx.filter = 'blur(60px)';
         
         ctx.beginPath();
         ctx.arc(blob.x, blob.y, blob.size, 0, Math.PI * 2);
@@ -68,8 +69,8 @@ const LiquidBlobsBackground = () => {
         if (blob.x < -blob.size || blob.x > canvas.width + blob.size) blob.vx *= -1;
         if (blob.y < -blob.size || blob.y > canvas.height + blob.size) blob.vy *= -1;
         
-        blob.opacity += (Math.random() - 0.5) * 0.005;
-        blob.opacity = Math.max(0.05, Math.min(0.4, blob.opacity));
+        blob.opacity += (Math.random() - 0.5) * 0.003;
+        blob.opacity = Math.max(0.1, Math.min(0.6, blob.opacity));
       }
     };
 
@@ -101,7 +102,7 @@ const LiquidBlobsBackground = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-60" 
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-80" 
     />
   );
 };

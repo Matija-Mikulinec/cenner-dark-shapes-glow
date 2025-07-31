@@ -5,26 +5,26 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden",
   {
     variants: {
       variant: {
-        default: "liquid-gradient text-primary-foreground glow-effect shadow-lg",
+        default: "liquid-gradient text-primary-foreground glow-effect shadow-lg font-semibold",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "glass-button text-foreground",
+          "glass-button text-foreground font-medium",
         secondary:
-          "glass-button text-secondary-foreground",
+          "glass-button text-secondary-foreground font-medium",
         ghost: "hover:bg-accent/20 hover:text-accent-foreground backdrop-blur-sm",
         link: "text-primary underline-offset-4 hover:underline",
-        glass: "glass-button text-foreground",
-        liquid: "liquid-gradient text-primary-foreground glow-effect",
+        glass: "glass-button text-foreground font-medium",
+        liquid: "liquid-gradient text-primary-foreground glow-effect font-semibold",
       },
       size: {
-        default: "h-11 px-8 py-2 w-[120px]",
-        sm: "h-9 px-6 w-[100px]",
-        lg: "h-12 px-10 w-[140px]",
+        default: "h-11 px-6 py-2",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-12 px-8 text-base",
         icon: "h-10 w-10",
       },
     },
