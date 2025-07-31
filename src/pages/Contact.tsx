@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import GeometricShapes from '@/components/GeometricShapes';
-import NetworkBackground from '@/components/NetworkBackground';
+import LiquidBlobsBackground from '@/components/LiquidBlobsBackground';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -38,8 +37,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <NetworkBackground />
-      <GeometricShapes />
+      <LiquidBlobsBackground />
       
       <main className="pt-32 pb-20 px-4">
         <div className="container mx-auto">
@@ -55,8 +53,8 @@ const Contact = () => {
                   <div className="flex items-start">
                     <MapPin className="mr-3 text-primary" size={24} />
                     <div>
-                      <h3 className="font-medium">Adresa</h3>
-                      <p className="text-gray-400 mt-1">
+                      <h3 className="font-medium">{t('addressLabel')}</h3>
+                      <p className="text-muted-foreground mt-1">
                         Ulica grada Vukovara 269d<br />
                         10000 Zagreb, Hrvatska
                       </p>
@@ -66,26 +64,25 @@ const Contact = () => {
                   <div className="flex items-start">
                     <Mail className="mr-3 text-primary" size={24} />
                     <div>
-                      <h3 className="font-medium">Email</h3>
-                      <p className="text-gray-400 mt-1">info@cenner.com</p>
+                      <h3 className="font-medium">{t('email')}</h3>
+                      <p className="text-muted-foreground mt-1">info@cenner.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
                     <Phone className="mr-3 text-primary" size={24} />
                     <div>
-                      <h3 className="font-medium">Telefon</h3>
-                      <p className="text-gray-400 mt-1">+385 1 234 5678</p>
+                      <h3 className="font-medium">{t('phone')}</h3>
+                      <p className="text-muted-foreground mt-1">+385 1 234 5678</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
                     <Clock className="mr-3 text-primary" size={24} />
                     <div>
-                      <h3 className="font-medium">Radno vrijeme</h3>
-                      <p className="text-gray-400 mt-1">
-                        Pon - Pet: 9:00 - 17:00<br />
-                        Sub - Ned: Zatvoreno
+                      <h3 className="font-medium">{t('workingHours')}</h3>
+                      <p className="text-muted-foreground mt-1">
+                        {t('workingHoursDetail')}
                       </p>
                     </div>
                   </div>

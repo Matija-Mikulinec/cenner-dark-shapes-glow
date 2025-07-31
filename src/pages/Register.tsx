@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import NetworkBackground from '@/components/NetworkBackground';
+import LiquidBlobsBackground from '@/components/LiquidBlobsBackground';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,20 +17,50 @@ const Register = () => {
     address: '',
     city: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useLanguage();
+  const { register } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Registration attempt:', formData);
+    setIsLoading(true);
+    
+    try {
+      const result = await register(formData);
+      
+      if (result.success) {
+        toast({
+          title: t('registrationSuccess'),
+          description: t('welcomeMessage'),
+        });
+        navigate('/');
+      } else {
+        toast({
+          title: t('registrationError'),
+          description: result.message,
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: t('registrationError'),
+        description: t('genericError'),
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative py-8">
-      <NetworkBackground />
+      <LiquidBlobsBackground />
       <div className="w-full max-w-lg glass-card p-8 rounded-xl shadow-2xl z-10 mx-4">
         <h1 className="text-3xl font-bold mb-6 text-center">{t('registerTitle')}</h1>
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -106,8 +138,8 @@ const Register = () => {
               required
             />
           </div>
-          <Button type="submit" variant="liquid" className="w-full">
-            {t('signUp')}
+          <Button type="submit" variant="liquid" className="w-full" disabled={isLoading}>
+            {isLoading ? t('loading') : t('signUp')}
           </Button>
         </form>
         <p className="mt-6 text-sm text-muted-foreground text-center">
